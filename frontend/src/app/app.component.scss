@@ -1,0 +1,460 @@
+/* ==========================================================
+   FULLSCREEN ROOT
+   ========================================================== */
+.root-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.4s ease, color 0.4s ease;
+  z-index: 0;
+  background: radial-gradient(circle at center, #0A0F25 0%, #002D62 100%);
+}
+
+/* ==========================================================
+   BACKGROUND THUNDER LOGO
+   ========================================================== */
+.background-logo {
+  position: absolute;
+  width: 60vw;               /* responsive scaling */
+  max-width: 900px;
+  min-width: 500px;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;             /* base visibility */
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+  filter: brightness(2.4) contrast(1.5) saturate(1.3) drop-shadow(0 0 40px rgba(0,122,193,0.4));
+  mix-blend-mode: overlay;   /* best balance across light/dark */
+}
+
+/* Dark mode: glowing, vivid */
+.dark-mode .background-logo {
+  opacity: 0.48;
+  filter: brightness(2.8) contrast(1.7) saturate(1.4) drop-shadow(0 0 55px rgba(0,122,193,0.6));
+  mix-blend-mode: screen;
+}
+
+/* Light mode: softer glow but visible */
+.light-mode .background-logo {
+  opacity: 0.42;
+  filter: brightness(1.1) contrast(1.8) saturate(1.5) drop-shadow(0 0 25px rgba(0,60,120,0.35));
+  mix-blend-mode: multiply;
+}
+
+
+
+/* ==========================================================
+   THEMES
+   ========================================================== */
+.dark-mode {
+  background: radial-gradient(circle at center, #0A0F25 0%, #002D62 100%);
+  color: #e8e8e8;
+}
+
+.light-mode {
+  background: linear-gradient(160deg, #E8F0F7, #D1E3F2);
+  color: #0A0F25;
+}
+
+/* ==========================================================
+   CHAT CONTAINER
+   ========================================================== */
+.chat-container {
+  width: 600px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  z-index: 2;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.dark-mode .chat-container {
+  background: rgba(10, 15, 25, 0.55); /* was 0.8, now softer */
+  border: 1px solid rgba(0, 122, 193, 0.25);
+}
+
+.light-mode .chat-container {
+  background: rgba(255, 255, 255, 0.6); /* was 0.8 */
+  border: 1px solid rgba(0, 122, 193, 0.25);
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+h2 {
+  margin: 0;
+  font-weight: 700;
+  color: #007AC1;
+  letter-spacing: 1px;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.theme-toggle:hover {
+  color: #F05133;
+}
+
+/* ==========================================================
+   MESSAGES
+   ========================================================== */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding: 20px 10px 0 5px; /* ⬅ added top padding */
+  z-index: 3;
+  scroll-behavior: smooth;
+}
+
+.message-wrapper {
+  display: flex;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.user {
+  justify-content: flex-end;
+}
+.bot {
+  justify-content: flex-start;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-line;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .user .bubble {
+  background: #007AC1;
+  color: #fff;
+  border-bottom-right-radius: 0;
+}
+
+.dark-mode .bot .bubble {
+  background: #1A1F36;
+  color: #E8E8E8;
+  border-bottom-left-radius: 0;
+}
+
+.light-mode .user .bubble {
+  background: #007AC1;
+  color: #fff;
+  border-bottom-right-radius: 0;
+}
+
+.light-mode .bot .bubble {
+  background: #E8F0F7;
+  color: #0A0F25;
+  border-bottom-left-radius: 0;
+}
+
+/* ==========================================================
+   INPUT AREA (full-width, no Send button)
+   ========================================================== */
+.input-area {
+  display: flex;
+  width: 100%;
+  padding-top: 5px;
+}
+
+input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid #007AC1;
+  background: rgba(0, 45, 98, 0.2);
+  color: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border-color: #F05133; /* orange Thunder accent */
+  background: rgba(0, 45, 98, 0.3);
+}
+
+input::placeholder {
+  color: #52649a;
+  opacity: 0.7;
+}
+
+
+/* ==========================================================
+   LOADING SPINNER — Basketball Animation
+   ========================================================== */
+.loading-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+}
+
+.spinner {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ff9933, #cc5500);
+  animation: spinBall 1s linear infinite;
+  box-shadow: 0 0 15px rgba(240, 81, 51, 0.5);
+}
+
+/* basketball seam lines */
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  background: #222;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.spinner::after {
+  width: 100%;
+  height: 2px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* spinning animation */
+@keyframes spinBall {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ==========================================================
+   ANIMATIONS
+   ========================================================== */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ==========================================================
+   CHAT HEADER
+   ========================================================== */
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0, 122, 193, 0.25);
+  /* header sits inside the chatbox, inherits its border radius */
+  background: rgba(0, 45, 98, 0.65); /* Thunder navy, subtle */
+  border-radius: 16px;
+}
+
+/* ==========================================================
+   THEME TOGGLE SWITCH — icon inside moving knob
+   ========================================================== */
+.theme-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-switch input {
+  display: none; /* hide checkbox */
+}
+
+.switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(90deg, #007AC1 0%, #FDBB30 100%); /* Thunder blue → orange */
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.4s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3) inset;
+}
+
+/* moving circle knob */
+.switch .slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #FDBB30; /* Sun color */
+  transition: transform 0.4s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+}
+
+/* knob when toggled to dark mode */
+.theme-switch input:checked + .switch .slider {
+  transform: translateX(30px);
+  background: #002D62; /* Thunder navy */
+  color: #FDBB30; /* moon color */
+  box-shadow: 0 0 10px rgba(0, 122, 193, 0.4), 0 0 15px rgba(0, 122, 193, 0.3) inset;
+}
+
+/* subtle hover glow */
+.switch:hover {
+  box-shadow: 0 0 12px rgba(0, 122, 193, 0.6) inset, 0 0 6px rgba(255, 187, 48, 0.4);
+}
+
+
+.light-mode .chat-header {
+  background: rgba(0, 122, 193, 0.12); /* gentle blue in light mode */
+  border-bottom-color: rgba(0, 122, 193, 0.25);
+}
+
+.bot-avatar {
+  width: 80px;
+  height: 80px;
+  flex: 0 0 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+  border: 2px solid #007AC1; /* Thunder blue ring */
+}
+
+.bot-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0; /* prevent overflow */
+}
+
+.bot-info .name {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+}
+
+.light-mode .bot-info .name {
+  color: #002D62; /* deep navy text on light mode */
+}
+
+.bot-info .status {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  color: #F05133; /* subtle Thunder orange status */
+}
+
+.theme-toggle {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.12);
+}
+
+/* ==========================================================
+   CUSTOM SCROLLBAR (Thunder Style, Auto-Hide)
+   ========================================================== */
+.messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #007AC1, #F05133);
+  border-radius: 10px;
+  border: 2px solid rgba(10, 15, 25, 0.3);
+  transition: background 0.3s ease, opacity 0.4s ease;
+  opacity: 0; /* hidden by default */
+}
+
+/* Show scrollbar only when actively scrolling */
+.messages:hover::-webkit-scrollbar-thumb,
+.messages:active::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #F05133, #FDBB30);
+}
+
+/* Firefox version */
+.messages {
+  scrollbar-width: thin;
+  scrollbar-color: #007AC1 transparent;
+}
+
+/* Mode-specific tweaks */
+.dark-mode .messages::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.light-mode .messages::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(0, 45, 98, 0.1);
+}

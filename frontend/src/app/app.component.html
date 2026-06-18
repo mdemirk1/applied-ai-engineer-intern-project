@@ -1,0 +1,42 @@
+<div class="root-wrapper" [class.dark-mode]="darkMode" [class.light-mode]="!darkMode">
+  <img src="assets/thunder-logo.png" alt="Thunder Logo" class="background-logo" />
+
+  <div class="chat-container">
+    <div class=chat-header>
+      <img src="assets/thunder-logo.png" alt="ThunderBot" class="bot-avatar" />
+      <div class="bot-info">
+        <div class="name">ThunderBot</div>
+        <div class="status">{{ loading ? 'typing…' : 'online' }}</div>
+      </div>
+        <!-- THEME TOGGLE SWITCH -->
+        <div class="theme-switch">
+          <input type="checkbox" id="theme-toggle" [checked]="darkMode" (change)="toggleTheme()" />
+          <label for="theme-toggle" class="switch">
+            <span class="slider">
+              <span class="icon">{{ darkMode ? '🌙' : '☀️' }}</span>
+            </span>
+          </label>
+        </div>
+    </div>
+    
+    <div class="messages">
+      <div *ngFor="let msg of messages" [ngClass]="msg.sender" class="message-wrapper">
+        <div class="bubble">{{ msg.text }}</div>
+      </div>
+
+      <div *ngIf="loading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Summoning the storm from Loud City...</p>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input
+        type="text"
+        [(ngModel)]="userInput"
+        placeholder="Message ThunderBot..."
+        (keyup.enter)="sendMessage()"
+      />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+“I take the potential question, embed it, and put it into my pgvector vector database. When a real question comes from the user, I also embed it and compare it — so what does Ollama do here?”
+
+“Why do we need to do similarity search with pgvector if Ollama can already understand questions?”
+
+“I understand — we need pgvector for similarity search and to tailor Ollama to our own data, right?”
+
+“How can I structure my FastAPI endpoint to handle question input and generate answers from the database?”
+
+“Explain the retrieval part of rag.py — what is happening with the vector comparison?”
+
+“This does not make any sense, why are you adding team names in a function — we can’t possibly do that for every team and every question.”
+
+“Let’s get rid of the summary; it hallucinates the wrong answer.”
+
+“Why did the system pick Timberwolves as winner when Thunder actually won?”
+
+“Why do we get rid of canonical? I just wondered.”
+
+“Make the output more generic for every type of question.”
+
+“Create a more consistent RAG answer format that returns correct evidence but no hallucinated summaries.”
+
+“For the UI, when I ask a question, the first question bubble is too close to the chat header — how can I fix this?”
+
+“Everything looks great now, can we make the analyze circle an actual turning basketball?”
+
+“When I chat a lot, a scroll appears with a white rectangular background — can we auto-hide it?”
+
+“For the ‘Analyzing...’ text, can we find something more creative, maybe Thunder-related?”
+
+“Make sure all front-end animations and color themes match Oklahoma City Thunder aesthetics.”
+
+“How can I validate retrieved answers by cross-checking with structured data (like game stats)?”
+
+“Write step 5 and 6 — Validation and Outcome — for an international student level explanation.”
+
+“Why is the pipeline producing the wrong canonical winner when the score is correct?”
+
+“Can we make the RAG question-answer pipeline more generalizable for all NBA game questions?”
+
+“Why does ollama_generate need text input instead of vectors directly?”
+
+“How do embeddings and vector similarity integrate with game_details and player_box_scores tables?”
+
+“How can I debug the query that fetches the five most similar games based on embeddings?”
+
+“Show me the structure of a clean retrieval function that returns game_id, timestamp, and points.”
+
+“I want to make the project endpoint /api/chat return clean JSON without hallucinations.”
+
+“How do I fix incorrect team winner detection logic when comparing home and away points?”
+
+“How can I simplify the ingest script to just retrieve relevant game data without summaries?”
+
+“What’s the correct SQLAlchemy syntax for ordering rows by vector similarity score?”
+
+“Can we test question embeddings and their nearest neighbors to confirm similarity ranking?”

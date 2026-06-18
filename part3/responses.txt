@@ -1,0 +1,96 @@
+##### Part 3: Writeup
+
+Answer the questions listed in the Part 3 section of Submission Requirements. Do NOT use any AI tools for this section. Limit each response to 500 words or fewer.
+
+1. This project was very challenging for me from the beginning because it was my first time trying 
+to build a RAG pipeline with an interactive chat interface. Although I am currently doing my 
+Master’s in Applied Artificial Intelligence, we have only covered some subjects, such as 
+Machine Learning and Data Engineering, in class. That is why I had an initial confusion 
+about some concepts, such as embedding and vector spaces, as well as retrieval and how 
+LLM actually works. I spend some time covering important topics such as how embedding 
+works, why we need to use a vector database, vector similarity, and cosine distance. 
+After that, I moved to actual implementation with pgvector and Ollama. My experimental 
+process includes trying to understand the relationship between ingest, embed, and rag 
+python scripts by running them first and observing the output. I saw that only the 
+game_details table was included in the embedding phase, and I added player_box_scores 
+and modified the SQL queries to join players and teams tables, for the model to recognize 
+the team and player names from their IDs in the game_details and player_box_scores tables. 
+I have implemented multiple versions of the embedding script to determine which technique 
+yields better results and reasoning. After that, I moved to the rag script and decided to 
+separate retrievals for players and games for the model to recognize the player or team by 
+their IDs. I had a lot of trouble making the model understand the names of the players or teams 
+in question. Sometimes the model found the correct game but could not discriminate the name of 
+the winning team and hallucinated. Similarly, the model also confused the home and away roles of 
+the teams. Furthermore, in the retrieval process, I had to try different “k” values to find a balance 
+between accuracy and speed. By trying different prompts, I learned that even small prompt wording can 
+influence factual accuracy. Sometimes getting rid of unnecessary words helped the model to prevent 
+incorrect assumptions. For the front-end part, I was challenged a lot because I had zero interest and 
+experience in front-end design. I mostly focused on the backend side of the projects during 
+my bachelor’s in computer science. But I knew that I wanted to create an easy-to-use user interface, 
+which also reflects the spirit of the Oklahoma City Thunder. I used ChatGPT5 to learn how to build and 
+implement the design in my mind to achieve a usable and attractive webpage. I named my bot ThunderBot, 
+added design and colors to match the OKC colors. I also added animations and cool dark and light modes 
+for the user to switch based on their preference. Overall, this project taught me the end-to-end logic 
+of how AI systems reason, embed the data, retrieve the context, and generate the result.
+
+
+2. With this project, I had the opportunity to connect my ongoing technical skills with new areas 
+that I had never experienced before. My background in Python, SQL, and backend development helped 
+me set up the data and structure the retrieval process, but this was my first time building a full 
+retrieval-augmented generation system. I learned how Large Language Models need embedding to turn 
+text into numbers so that we can represent the meaning, and how vector similarity search works. I 
+was very surprised when I saw how the output changed. In conclusion, this project made me more 
+confident as a developer, working on AI projects. In the future, I hope to learn more about how to
+increase the accuracy of the embedding and retrieval, and how to use better evaluation tools for 
+RAG pipelines.
+
+
+3. I have the data at the sub-possession level, which captures basic events like passes, screens, 
+and drives with court coordinates for the ball as well as all 10 players on the court. This data is 
+very important because it can be used to analyze the attack and defense strategies of a team. In 
+terms of pre-processing, I would first sort the data based on the time stamps of the in-game events. 
+I would also join every event with corresponding results, such as shots, turnovers, and scores. 
+After that, I could measure the average distance between offensive players to understand spacing 
+or analyze where screens are usually set. By connecting these actions with their outcomes, I could 
+see which play patterns lead to higher scores. Technically, I would use Python with libraries like 
+Pandas and NumPy for data processing, Matplotlib for visualizations, and scikit-learn for clustering 
+or prediction.
+
+
+4. 29 joints, meaning the full body of the player will be tracked in 60 frames per second. This is 
+very challenging because the data is high-dimensional and continuous. It would be hard to extract 
+meaningful insights from this type of dense motion data. For features,
+
+- We could measure and calculate how quickly the player changes direction or position after the 
+move of opponent from the speed of the skeletal points. 
+This could help understand the defensive responsiveness of the player. 
+
+- We could also observe how the player moves when he doesn’t have the ball, to measure efficiency
+ and the use of energy. 
+
+- Using the position data of the ankles, we could observe how balanced a player stays 
+during defensive or offensive actions, to detect fatigue in players and players with strong 
+defensive work.
+
+Since this is high-dimensional data, I would use dimensionality reduction to better visualize 
+the movement patterns of the player. Then I would do clustering to put similar movements into 
+groups. For technologies, I would use Python libraries such as numpy and pandas, then TensorFlow 
+to model how players move during the game and to find patterns such as quick changes in direction 
+or balance problems. OpenCV could be useful for working with the body points, frame by frame. With 
+scikit-learn, I could group similar movement styles and reduce the complexity of the data to make it 
+easier to understand. Finally, I would use Plotly or Matplotlib for visualization.
+
+
+5. I have text-based data: scouting reports, internal memos, and notes. This type of data can be 
+challenging to work with because it is often messy, repetitive, and difficult to analyze manually. 
+I would pre-process the data by removing duplicates, correcting formatting, and standardizing 
+terminology. Like the project, I would embed the text to convert it into vectors, representing 
+their meaning by numeric values. Then, I would store the vectors in a pgvector database. When a 
+user asks a question, I would retrieve the most relevant text chunks by vector similarity. After that, 
+pass the retrieved text to a language model (LLM) such as GPT or Ollama to get the insights. 
+I would also use the prompt and answer templates to make the output consistent. I would check 
+the results by comparing the text insights with real player data, such as game statistics or past 
+records, to make sure the information is correct. I would create an easy-to-use web interface for 
+the analysts to use the application, search filter, and see important information. It would help 
+team managers and analysts find useful patterns, review scouting reports, and make better decisions 
+about trades, drafts, and player development.

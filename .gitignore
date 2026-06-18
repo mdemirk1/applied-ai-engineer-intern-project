@@ -1,0 +1,11 @@
+
+# macOS
+.DS_Store
+
+# local/backend data
+backend/data/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo

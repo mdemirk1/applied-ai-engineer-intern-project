@@ -1,3 +1,7 @@
+<h2>Demo Screenshot</h2>
+
+<img src="part2/demo-screenshot.png" alt="NBA Analytics Assistant Demo" width="800">
+
 #  2025 Applied AI Engineer Internship Project
 
 Your work must be your own and original. You may use AI tools to help aid your work if you include a single text file containing an ordered list of any AI prompts, along with the specific model queried (e.g. ChatGPT 5 Thinking) in the `prompts` directory. Do not include the AI's output.
@@ -66,7 +70,3 @@ The frontend should run on http://localhost:4200/. Visit this address to see the
 - Create a chat interface for interacting with the backend retrieval pipeline. Some minimal Angular skeleton code is provided in the [`frontend/src/app`](frontend/src/app) directory, feel free to edit it as you wish.
 
 Submit a video in the [`part2`](part2) folder that demonstrates how your UI functions.
-
-<h2>Demo Screenshot</h2>
-
-<img src="part2/demo-screenshot.png" alt="NBA Analytics Assistant Demo" width="800">
